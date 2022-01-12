@@ -1,0 +1,61 @@
+/*
+ ---------------------------------------------------------------------------------------------------------
+   S A P   E C T R   M A C R O   P R O G R A M
+ ---------------------------------------------------------------------------------------------------------
+ Purpose:      resubmit a APM Task
+ Created by:   Sebastian Heese
+ Created at:   26. March 2020
+ --------------------------------------------------------------------------------------------------------- 
+ <DOC>
+ Resubmission of an APM task on a specific date.
+ </DOC>
+ ---------------------------------------------------------------------------------------------------------
+*/
+
+// -------------------------------------------------------------------------------------------------------
+// Define functions
+function set_task_resubmit(key, date) {
+
+    var key_arr = key.split("@");
+    var trans = Packages.cadagent.sap.man.SapManager.getInstance().getTransactionWithGui();
+
+    try {
+        var func = trans.createFunction("Z_FM_RESUBMIT_TASK"); // call BAPI
+        func.getImportParameterList().setValue("I_TASK_GUID", key_arr[0]);
+        func.getImportParameterList().setValue("I_DATE", date);
+        trans.execute(func);
+    }
+    finally {
+        if (typeof trans != "undefined") {
+            // cleanup transaction
+            Packages.cadagent.sap.man.SapManager.getInstance().deallocateTransaction(trans);
+        }
+    }
+}
+
+function main() {
+
+    if ($execution_environment == "SMARTCONTAINER") {
+        keylist = KEYLIST_FROM_REFOBJ();                             // get reference object
+    } else {
+        keylist = KEYLIST_FROM_CONTEXT("active", "selected");        // get selected document(s)
+    }
+
+    date = ASK_USER("field", "Please select resubmit Date", "DATE");
+    day = date.substring(0, 2);
+    month = date.substring(3, 5);
+    year = date.substring(6, 10);
+
+    date = GET_DATE_AS_STRING(day, month, year);
+
+    for (var i = 0; i <= keylist.length - 1; i++) {                  // loop over 
+        set_task_resubmit(keylist[i], date);
+    }
+}
+
+// ---------------------------------------------------------------------------------------------------------
+// Main
+main();                                                              // execute the function "main"
+// ---------------------------------------------------------------------------------------------------------
+// End of macro
+// ---------------------------------------------------------------------------------------------------------

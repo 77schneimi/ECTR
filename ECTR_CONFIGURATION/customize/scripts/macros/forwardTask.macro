@@ -1,0 +1,98 @@
+/*
+ ---------------------------------------------------------------------------------------------------------
+   S A P   E C T R   M A C R O   P R O G R A M
+ ---------------------------------------------------------------------------------------------------------
+ Purpose:      forward a APM Task
+ Created by:   Michael Schneider
+ Created at:   01. April 2020
+ --------------------------------------------------------------------------------------------------------- 
+ <DOC>
+ Forward an APM task to a specific User.
+ </DOC>
+ ---------------------------------------------------------------------------------------------------------
+*/
+
+// -------------------------------------------------------------------------------------------------------
+// Define functions
+
+function forwardTaskTo(taskGUID, forward_to_user) {
+
+    var trans = Packages.cadagent.sap.man.SapManager.getInstance().getTransactionWithGui();
+    
+    try {
+        var func = trans.createFunction("ZRFC_ECTR_FORWARD_TASK"); // call API
+        func.getImportParameterList().setValue("I_TASK_GUID", taskGUID);
+        func.getImportParameterList().setValue("I_TO_USER", forward_to_user);
+        trans.execute(func);
+        et_return = func.getExportParameterList().getValue("ET_RETURN");
+        
+        var i;
+        for (i = 0; i < et_return.getNumRows(); i++) { 
+                REPORT(et_return.getValue("MESSAGE"));
+        }
+    }
+    finally {
+        if (typeof trans != "undefined") {
+            // cleanup transaction
+            Packages.cadagent.sap.man.SapManager.getInstance().deallocateTransaction(trans);
+        }
+    }
+}
+
+function searchHelpUser() {
+
+    try {
+        var trans = Packages.cadagent.sap.man.SapManager.getInstance().getTransactionWithGui();
+		var func = trans.createFunction("/DSCSAG/F4_VALUES_GET");
+		var help_infos = func.getImportParameterList();
+		help_infos.setValue("TABNAME", "USR21");
+		help_infos.setValue("FIELDNAME", "BNAME");
+		help_infos.setValue("SEARCHHELP", "USER_COMP");		
+
+        REPORT("start searchHelp for User");
+	    trans.execute(func);
+	    var table_values = func.getTableParameterList().getTable("VALUES");
+        var i;
+        for (i = 0; i < table_values.getNumRows(); i++) {
+            if (table_values.getValue("FIELDNAME") == "BNAME") {
+                table_values.setRow(i);
+                return table_values.getValue("FIELDVAL");                
+            }
+        }
+	} finally {
+        if (typeof trans != "undefined") {
+            // cleanup transaction
+            Packages.cadagent.sap.man.SapManager.getInstance().deallocateTransaction(trans);
+        }
+    }
+}
+
+function main() {
+   
+    var forwardToUser = searchHelpUser();
+
+    if (forwardToUser == null) {
+        REPORT("No user was selected");
+        return;
+    }
+
+    if ($execution_environment == "SMARTCONTAINER") {
+        keylist = KEYLIST_FROM_REFOBJ();                             // get reference object
+    } else {
+        keylist = KEYLIST_FROM_CONTEXT("active", "selected");        // get selected document(s)
+    }
+
+    keylist.forEach(function (item) {
+            var taskStr = item.split("@");
+            var taskGUID = taskStr[0];
+            result = forwardTaskTo(taskGUID, forwardToUser);
+        }
+    );    
+}
+
+// ---------------------------------------------------------------------------------------------------------
+// Main
+main();                                                              // execute the function "main"
+// ---------------------------------------------------------------------------------------------------------
+// End of macro
+// ---------------------------------------------------------------------------------------------------------

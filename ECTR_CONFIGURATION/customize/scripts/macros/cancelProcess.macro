@@ -1,0 +1,47 @@
+/*
+ ---------------------------------------------------------------------------------------------------------
+   S A P   E C T R   M A C R O   P R O G R A M
+ ---------------------------------------------------------------------------------------------------------
+ Purpose:      cancel a APM Process (hard)
+ Created by:   Michael Schneider
+ Created at:   26. March 2020
+ --------------------------------------------------------------------------------------------------------- 
+ <DOC>
+ This macro will cancel an APM-Process. 
+ First try will to set the process to Status cancelled by the default API. 
+ If this doesn't work the process will cancelled hard/directly on the database.
+ </DOC>
+ ---------------------------------------------------------------------------------------------------------
+*/
+
+// -------------------------------------------------------------------------------------------------------
+// Define functions
+
+function getAPMGuid(object) {
+	if (object[1] == "CENIT_PRO") {
+		return object[0];
+  }
+}
+
+function main()  {
+  list = KEYLIST_FROM_CONTEXT("active", "selected");
+  if (list.length == 0) { 
+		alert("Please, select first an APM Process in SAP ECTR");
+		return; 
+	}
+
+	sID = CREATE_SET(list);
+	parameters = { status: "05" };
+	result = CALL_CONVERT_FM("FM:ZRFC_ECTR_SET_PROC_STATUS", sID, parameters );
+  kl2 = KEYLIST_FROM_SET(result); // without this line the code wont't be executed
+  alert("done. pls refresh")  
+}
+
+// ---------------------------------------------------------------------------------------------------------
+// Main
+
+  main()                                                        // execute the function "main"
+
+// ---------------------------------------------------------------------------------------------------------
+// End of macro
+// ---------------------------------------------------------------------------------------------------------

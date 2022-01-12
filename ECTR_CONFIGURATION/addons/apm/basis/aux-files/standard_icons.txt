@@ -1,0 +1,47 @@
+# *****************************************************************************
+# APM Integration
+# Icon Definitions
+# *****************************************************************************
+
+# Root container
+con_cenit_apm.icon = apm/{0}/apm
+cenit.apm.my.task.container.icon = apm/{0}/smartlist_activity
+cenit.apm.my.process.container.icon = apm/{0}/smartlist_process
+
+# Process
+cenit.apm.process.icon = apm/{0}/process
+fnc.api.generic2(ECTR_NAV_PRO_CREATE_PRO) = apm/{0}/create_process
+fnc.api.generic2(ECTR_NAV_PRO) = apm/{0}/process
+fnc.api.generic2(ECTR_NAV_PRO_POV) = apm/{0}/workplace
+fnc.api.generic2(ECTR_PRO_CREATE_MATS) = apm/{0}/create_process
+fnc.api.generic2(ECTR_PRO_CREATE_DIRS) = apm/{0}/create_process
+# Process Enhancement
+fnc.execute.macro(killProcess.macro) = apm/{0}/skull
+
+# Process Container
+cenit.apm.items.object.container.icon = apm/{0}/object_links
+cenit.apm.item.owb.container.icon = apm/{0}/owb
+cenit.apm.process.task.container.icon = apm/{0}/activity_container
+cenit.apm.process.ecn.container.icon = apm/{0}/ecm_containter
+
+# Task
+cenit.apm.task.icon = apm/{0}/activity
+fnc.api.generic2(ECTR_NAV_TSK) = apm/{0}/activity
+fnc.apm.task.change.status(Accepted) = apm/{0}/accept
+fnc.apm.task.complete = apm/{0}/fertigstellen
+fnc.api.generic2(ECTR_NAV_TSK_POV) = apm/{0}/workplace
+fnc.api.generic2(ECTR_NAV_TSK_PRO) = apm/{0}/process
+fnc.api.generic2(ECTR_NAV_TSK_CREATE_PRO) = apm/{0}/create_process
+fnc.api.generic2(ECTR_NAV_TSK_PRO) = apm/{0}/process
+# Task Enhancement
+fnc.execute.macro(resubmitTask.macro) = apm/{0}/bell
+fnc.execute.macro(forwardTask.macro) = apm/{0}/forward
+
+# OWB
+cenit.apm.owb.icon = apm/{0}/owb_object
+fnc.api.generic2(ECTR_NAV_OWB) = apm/{0}/owb_object
+fnc.apm.owb.refresh = {0}/sap/refresh
+
+# Process Functions
+fnc.apm.process.add = apm/{0}/process
+fnc.apm.owb.remove = {0}/sap/delete

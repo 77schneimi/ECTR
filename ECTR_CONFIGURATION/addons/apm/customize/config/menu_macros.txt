@@ -1,0 +1,55 @@
+# *****************************************************************************
+# APM Integration
+# Macro Definitions
+# *****************************************************************************
+
+# Add to Folder Functions for APM-Objects
+
+? FOLDER_ADD_CENIT = fnc.apm.process.add
+
+# Prozess Menu
+#------------------------------------------------
+? MENU_APM_PRO          = fnc.api.generic2(ECTR_NAV_PRO)
+                        = fnc.api.generic2(ECTR_NAV_PRO_CREATE_PRO)
+                        = -----------------------------
+                        = fnc.api.generic2(ECTR_NAV_PRO_POV)
+                        = -----------------------------
+                        = fnc.object.refresh                        
+						
+# Process Enhancements
+# ---
+# Enhancements of APM Standard Menue
+# The Macro should avaivaible in %ECTRInstallation%\customize\scripts\macros
+# or have a (relative) Path
+#------------------------------------------------
+? ENHANCED_MENUE_APM_PRO = fnc.execute.macro(cancelProcess.macro)
+
+# Task Menu			
+#------------------------------------------------
+? MENU_APM_TSK          = fnc.api.generic2(ECTR_NAV_TSK)
+                        = fnc.api.generic2(ECTR_NAV_TSK_PRO)
+                        = fnc.api.generic2(ECTR_NAV_TSK_CREATE_PRO)
+                        = -----------------------------
+                        = fnc.api.generic2(ECTR_NAV_TSK_POV)
+                        = -----------------------------
+                        = fnc.object.refresh
+
+# Task Enhancements
+# ---
+# Enhancements of APM Standard Menue
+#------------------------------------------------
+? ENHANCED_MENUE_APM_TSK = fnc.execute.macro(resubmitTask.macro)
+                         = fnc.execute.macro(forwardTask.macro)
+
+
+# Standard Navigation	
+#------------------------------------------------
+? MENU_APM_STANDARD     = fnc.api.generic2(ECTR_NAV_TSK_POV)
+                        = fnc.api.generic2(ECTR_NAV_PRO_CREATE_PRO)
+                        = -----------------------------
+						
+# Material Extension (have to be manually add to the menu_macros.txt in SAP ECTR Customizing)				
+#? XXXX       = fnc.api.generic2(ECTR_PRO_CREATE_MATS)
+
+# Document Extension (have to be manually add to the menu_macros.txt in SAP ECTR Customizing)
+#? XXXX       = fnc.api.generic2(ECTR_PRO_CREATE_DIRS)

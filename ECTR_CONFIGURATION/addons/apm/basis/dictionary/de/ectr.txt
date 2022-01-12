@@ -1,0 +1,77 @@
+﻿# *****************************************************************************
+# APM Integration
+# Dictionaries
+# *****************************************************************************
+
+# APIs
+fnc.api.generic2(ECTR_NAV_PRO) = Prozess öffnen (WebUI) 
+fnc.api.generic2(ECTR_NAV_TSK) = Aktivität öffnen (WebUI)
+fnc.api.generic2(ECTR_NAV_TSK_CREATE_PRO) = Prozess erstellen (WebUI)
+fnc.api.generic2(ECTR_NAV_PRO_CREATE_PRO) = Prozess erstellen (WebUI)
+fnc.api.generic2(ECTR_NAV_PRO_POV) = Arbeitsplatz öffnen (WebUI) 
+fnc.api.generic2(ECTR_NAV_TSK_POV) = Arbeitsplatz öffnen (WebUI) 
+fnc.api.generic2(ECTR_NAV_TSK_PRO) = Prozess öffnen (WebUI)
+fnc.api.generic2(ECTR_PRO_CREATE_MATS) = Prozess erstellen
+fnc.api.generic2(ECTR_PRO_CREATE_DIRS) = Prozess erstellen
+
+# Process Enhancements
+#------------------------------------------------
+fnc.execute.macro(killProcess.macro) = Prozess abbrechen (hart)
+
+# Process
+cenit.apm.process = Prozess
+cenit.apm.process.number = Prozess
+cenit.apm.process.object.container = Objekte
+cenit.apm.item.owb.container = Objekt Workbench
+cenit.apm.process.task.container = Aktivitäten
+cenit.apm.process.ecn.container = Änderungsnummern
+fnc.apm.process.add = Prozess
+cenit.amp.some.objects.were.ignored = %1 von %2 Objekte wurden ignoriert.
+
+# Searchdialog for Processes
+cenit.apm.process.search.dialog.title = Prozess Suche
+cenit.apm.process.number = Prozess
+cenit.apm.process.name = Beschreibung
+cenit.apm.process.use.case = Anwendungsfall
+cenit.apm.process.created.by = Ersteller
+
+# Object Workbench
+cenit.apm.owb = Objekt Workbench
+cenit.apm.owb.number = Objekt Workbench
+cenit.apm.owb.tab.title = Objekt Workbench
+cenit.own.link.unsupported.object = Objekt wird nicht unterstützt
+cenit.apm.create.new.object.workbench.title = Objekt Workbench anlegen
+cenit.apm.create.new.object.workbench.question = Möchten Sie das Objekt %1 hinzufügen?
+cenit.apm.create.new.objects.workbench.question = Möchten Sie die Objekte  \n%1 \nhinzufügen?
+fnc.apm.owb.remove = Objekt Workbench Objekt entfernen
+cenit.apm.remove.object.workbench.title = Objekt Workbench Objekt entfernen
+cenit.apm.remove.object.workbench.question = Wollen Sie wirklich %1 entfernen?
+fnc.api.generic2(ECTR_NAV_OWB) = Objekt Workbench (WebUI) öffnen
+fnc.apm.owb.refresh = Objekt Workbench aktualisieren
+
+# Task
+cenit.apm.task.process.panel.title = Prozess
+cenit.apm.task.task.panel.title = Aktivität
+cenit.apm.task.checklist.tab.title = Checkliste
+cenit.apm.task.descision.tab.title = Entscheidung
+cenit.apm.task.descision.label = Entscheidung
+plm.apm.comment.label = Kommentar
+cenit.apm.task.approval.tab.title = Genehmigung
+cenit.apm.task.approval.label = Genehmigung
+cenit.apm.task.descision.comment.label = Kommentar
+fnc.apm.task.change.status(Accepted) = Annehmen
+fnc.apm.task.complete = Fertigstellen
+cenit.apm.task.comment.field.is.not.maintained = Geben Sie bitte einen Kommentar an.
+
+# Task Enhancements
+#------------------------------------------------
+fnc.execute.macro(resubmitTask.macro) = Wiedervorlage
+fnc.execute.macro(forwardTask.macro)  = Weiterleiten
+
+# APM task checklist
+cenit.apm.task.complete.checklist.dialog.text = Nicht alle erforderlichen Checklisteneinträge sind fertiggestellt. \n%1
+
+# Root Container
+con_cenit_apm.root = cenitCONNECT APM
+cenit.apm.process.my.task.container = Meine Aktivitäten
+cenit.apm.process.my.process.container= Meine Prozesse

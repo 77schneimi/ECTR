@@ -1,0 +1,265 @@
+ 
+###############################################################################
+#
+#            E C T R   L O G O N   D E F A U L T   P R E F E R E N C E S
+#
+#                            Copyright (c) 2006 - 2015
+#                    DSC Software AG, Karlsruhe, Germany
+#                            All rights reserved
+#
+###############################################################################
+# @(#) $Id: SAPlogon.txt 2517 2016-06-03 10:22:38Z sk $
+# ECTR RELEASE: SAP_ECTR V5.1.12.0 
+###############################################################################
+#
+# ECTR uses the preference variables defined in this file to control
+# SAP system connection options and details
+#
+###############################################################################
+#
+# -----------------------------------------------------------------------------
+# 1.1    ECTR bootstrap system settings
+#
+# Define a unique installation ID to make it possible to distinguish settings
+# stored in the registry. Should normally be defined in the environment
+# variable PLM_INSTID
+
+      sap.logon.instId                 = @PLM_INSTID@
+
+# Define the initial system look & feel
+
+      system.lookAndFeel = com.sun.java.swing.plaf.windows.WindowsLookAndFeel
+	  
+# Allowed transaction idle time in seconds. If a transaction was idle for a 
+# specified amount of seconds, then it will be released and not used anymore. 
+# Set this variable to -1 to switch off this feature
+
+      sap.transaction.maxIdleTime      = -1
+
+# Enable/disable CPIC trace (-1 [use environment setting], 0 no trace, 1,2,3 trace level)
+
+      sap.transaction.cpicTrace = -1
+
+# Enable/disable RFC trace (0 or 1)
+# This would create trace files jco_rfc*.trc in the ECTR log directory which you could send to support.
+
+      sap.transaction.jcoTrace = -1
+
+# Define trace level for JCo (see https://wiki.scn.sap.com/wiki/display/SI/Java+Connectivity)
+# Use level 5 to send log files to support if nothing else requested.
+# This would create a trace file JCO*.trc in the ECTR log directory which you could send to support.
+
+      jco.trace_level = 0
+      jco.trace_path = .
+
+# -----------------------------------------------------------------------------
+# 1.2    SAP ECTR Logon Screen Definitions
+#
+# Suppress the ECTR logon screen. In this case
+# ECTR will use the default connection group as defined by sap.logon.defaultindex. Please
+# note that this value will also be stored in the user specific setting files.
+# false = Show logon screen (default)
+# true = Don't show the logon screen and try to logon with stored settings
+
+      sap.autologon                    = false
+
+# Show operating system user in ECTR logon screen.
+# In this case ECTR will show the user of the operating system as the user name in the logon screen. 
+# The single sign on mechanism will not be influence.
+# true = Show OS user in logon screen.
+# false = Use normal user (default)
+
+    sap.logon.sso.useOsUser = false
+
+# Always show the SAP client.
+# In this case the SAP client will always be shown in the ECTR Logon GUI, even if there is a Connection Group definition.
+# true = always show SAP client in ECTR Logon GUI.
+# false = only show SAP client if Connection Group definition is empty.
+
+      sap.logon.client.display = false
+
+# Define the properties that will be used for the highlighting of missing entries.
+
+     sap.logon.emptyfield.highlightcolor = 0;255;153
+     sap.logon.emptyfield.highlighttime = 300
+
+# Define which logon languages should be available in the logon dialog (semicolon separated)
+# de = German
+# en = English
+# es = Spanish 
+# fr = French
+# it = Italian 
+# ja = Japanese
+# pt = Portuguese 
+# zh = Chinese(Simplified)
+# ru = Russian
+# zf = Chinese (traditional)
+
+     plm.logon.gui.languages = de;en;es;fr;it;ja;pt;zh;ru;zf
+
+
+# -----------------------------------------------------------------------------
+# 1.3    Connection Group definitions
+#
+# In this section the SAP connection parameters are defined. 
+# These parameters are organized in numeral groups. 
+# To assign the parameters to a group replace the generic * by a numeral. 
+# Please note that the numeric sequence needs to be continuous. 
+# You can always add new groups as needed.
+#
+# Default connection group.
+# Here a numeral can be set for which connection group should be used as default in the logon screen.
+
+      sap.logon.defaultIndex           = 1
+
+
+# The generic definition is used if there is no specific definition available.
+# The following parameters are available:
+#
+#  sap.logon.connectionName*   Connection name displayed in selection box
+#  sap.logon.client*           SAP client
+#  sap.logon.user*             Preselected user-name
+#  sap.logon.language*         Logon language
+#  sap.logon.destination*      System name (3 letters, used by ECTR)
+#  sap.logon.hostname*         Full hostname connection string, path + system name
+#  sap.logon.sysnr*            System number
+#  sap.logon.gatewayService*   Gateway service
+#  sap.logon.rfcTrace*         RFC Trace settings
+#  sap.logon.timeoutLogoff*    Maximum lifetime for transactions in seconds
+#  sap.logon.timeoutPing*      Set to 1 to enable pinging to keep connections up
+#  sap.logon.daytimePing*      Start / end time for connection pinging
+#  sap.logon.sapGui*           Use SAP-Gui ( 0- NoGUI,  2-GUI)
+#  sap.logon.loadBalancing*    Load balancing (1)
+#  sap.logon.ldBalHostname*    Hostname for load balancing (full path)
+#  sap.logon.ldBalDestination* System name
+#  sap.logon.ldBalGroup*       Load balancing group
+#  sap.logon.ldBalService*     Load balancing service
+#  sap.logon.snc_partnername*  SSO Partnername or Certificate (e.g. p/secude:CN=Q18, OU=IT, O=DSC, C=DE) see http://help.sap.com/saphelp_nwpi71/helpdata/de/86/db4327d1f740998ddcc31dd7ffb197/content.htm
+#  sap.logon.snc_lib*          SSO-Library ( @PLM_SNC_LIB@, s. plm_initialize.bat)
+#  sap.logon.snc_only*	       Usage of SNC without SSO, set this with sap.logon.snc_only = true
+
+
+      sap.logon.User*                = SCHNEIDER
+      sap.logon.Password*            =
+      sap.logon.Language*            = @PLM_LANGUAGE@
+
+      sap.logon.RfcTrace*            = 0
+      sap.logon.TimeoutLogoff*       = 3600
+      sap.logon.TimeoutPing*         = 0
+      sap.logon.DaytimePing*         = 0 0
+      sap.logon.SapGui*              = 0
+      sap.logon.LoadBalancing*       = 0
+      sap.logon.LdBalHostname*       =
+      sap.logon.LdBalDestination*    =
+      sap.logon.LdBalGroup*          =
+      sap.logon.snc_lib*             = @PLM_SNC_LIB@	  
+
+
+# System 1
+
+      sap.logon.ConnectionName1      = ME2 - PLMF ccEPM 1.2
+      sap.logon.Client1              = 100
+      sap.logon.Destination1         = ME2
+      sap.logon.Hostname1            = sapme2.de.cenit-group.com
+      sap.logon.Sysnr1               = 00
+      sap.logon.GatewayService1      = 3300
+      sap.logon.snc_lib1             = @SNC_LIB_64@
+      sap.logon.snc_partnername1     = p:CN=SAP/SAPServiceME2
+
+
+# System 2
+
+      sap.logon.ConnectionName2      = AE8 - Entwicklungssystem
+      sap.logon.Client6              = 100
+      sap.logon.Destination2         = AE8
+      sap.logon.Hostname2            = sapae8.de.cenit-group.com
+      sap.logon.Sysnr2               = 00
+      sap.logon.GatewayService2      = 3300	      
+
+
+# System 3
+
+      sap.logon.ConnectionName3      = CE2  - Beratungssystem
+      sap.logon.Client3              = 100
+      sap.logon.Destination3         = CE2
+      sap.logon.Hostname3            = sapce2.de.cenit-group.com
+      sap.logon.Sysnr3               = 00
+      sap.logon.GatewayService3      = 3300	   
+
+# System 4
+
+      sap.logon.ConnectionName4      = ME1 - PLMF ccEPM 1.3
+      sap.logon.Client4              = 100
+      sap.logon.Destination4         = ME1
+      sap.logon.Hostname4            = sapme1.de.cenit-group.com
+      sap.logon.Sysnr4               = 00
+      sap.logon.GatewayService4      = 3300	
+
+	  
+# System 5
+
+      sap.logon.ConnectionName5      = DE1  -   PLM Foundation 
+      sap.logon.Client5              = 100
+      sap.logon.Destination5         = DE1
+      sap.logon.Hostname5            = sapde1.de.cenit-group.com
+      sap.logon.Sysnr5               = 00
+      sap.logon.GatewayService5      = 3300
+	  
+# System 6
+
+     sap.logon.ConnectionName6      = DE4  -   Entwicklungssystem Stgt
+     sap.logon.Client6              = 100
+     sap.logon.Destination6         = DE4
+     sap.logon.Hostname6            = sapde4.de.cenit-group.com
+     sap.logon.Sysnr6               = 00
+     sap.logon.GatewayService6      = 3300    
+     
+# System 7
+
+     sap.logon.ConnectionName7      = DE4  -   Entwicklungssystem Stgt SSO
+     sap.logon.Client7              = 100
+     sap.logon.Destination7         = DE4
+     sap.logon.Hostname7            = sapde4.de.cenit-group.com
+     sap.logon.Sysnr7               = 00
+     sap.logon.GatewayService7      = 3300
+     sap.logon.snc_lib7             = @SNC_LIB_64@
+     sap.logon.snc_partnername7     = p:CN=SAP/SAPServiceDE4
+      
+# System 8
+
+     sap.logon.ConnectionName8      = AE7  -   Testsystem Stgt
+     sap.logon.Client8              = 100
+     sap.logon.Destination8         = AE7
+     sap.logon.Hostname8            = sapae7.de.cenit-group.com
+     sap.logon.Sysnr8               = 00
+     sap.logon.GatewayService8      = 3300
+
+	  
+# -----------------------------------------------------------------------------
+# 1.4    User role information
+#
+# As part of the SAP logon procedure ECTR reads all the SAP roles a user has
+# assigned. This is used to define user dependent behaviour in ECTR.
+# Since a user may have multiple roles, the following preference variable may
+# be used to define the priority sequence of these roles.
+
+     sap.logon.userrole.list = 
+
+# As an alternative to getting the user roles from SAP the ECTR logon process
+# can provide a selection list of roles in the SAP logon window. The definition
+# uses an ID that is then assigned to PLM_ROLE.
+# If this method is used, the SAP roles will not be processed.
+
+     sap.logon.cad_group_id1   = user
+     sap.logon.cad_group_desc1 = Full function user
+     sap.logon.cad_group_id2   = catalog
+     sap.logon.cad_group_desc2 = Catalog Administrator
+
+# -----------------------------------------------------------------------------
+# 1.5    Sap Configuration Settings
+# 
+# As part of the Function for distributing ECTR Configurations via SAP System
+# The Administrator can use an Option for selecting the Version of the Configuration
+# that he will use.
+# sap.logon.configuration.document.version = latest | latest_released | released_today | XX (Version Number)
+

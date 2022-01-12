@@ -1,0 +1,41 @@
+# *****************************************************************************
+# APM Integration
+# Menu Definitions
+# *****************************************************************************
+
+# Rootcontainer Cenit APM
+plm.om.desktop.rootcontainers = @plm.om.desktop.rootcontainers@;con_cenit_apm
+
+# Functions for Process
+#------------------------------------------------
++  om.popup.menu.APM_PRO                = ? MENU_APM_PRO
+                                        = -----------------------------
+                                        = ? CLPBRD_OBJ
+                                        = -----------------------------
+                                        = ? ENHANCED_MENUE_APM_PRO
+
+	
+# Functions for Task                	         
+#------------------------------------------------ 
++  om.popup.menu.APM_TSK                = ? MENU_APM_TSK
+                                        = -----------------------------
+                                        = fnc.apm.task.change.status(Accepted)
+                                        = fnc.apm.task.complete
+                                        = -----------------------------
+                                        = ? CLPBRD_OBJ
+                                        = ? ENHANCED_MENUE_APM_TSK
+	
+# Functions for OWB	
+#------------------------------------------------
++  om.popup.menu.APM_OWB                = fnc.api.generic2(ECTR_NAV_OWB)
+                                        = fnc.apm.owb.remove
+                                        = -----------------------------
+                                        = fnc.apm.owb.refresh
+                                        = -----------------------------
+		
+# Functions for my process
+#------------------------------------------------
++  om.popup.menu.MY_APM_PROCESS         = ? MENU_APM_STANDARD
+	
+# Functions for my tasks
++  om.popup.menu.MY_APM_TASK            = ? MENU_APM_STANDARD 
