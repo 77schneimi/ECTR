@@ -1,0 +1,7 @@
+# *****************************************************************************
+# Dictionary for Language = DE
+# *****************************************************************************
+
+# APIs
+fnc.execute.macro(DMRef\:dmref_allocate.txt) = Material zuweisen
+fnc.execute.macro(DMRef\:dmref_deallocate.txt) = Material entfernen

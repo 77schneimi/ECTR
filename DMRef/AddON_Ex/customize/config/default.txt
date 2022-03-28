@@ -1,0 +1,22 @@
+# *****************************************************************************
+# Default Settings
+# *****************************************************************************
+
+# Switch on support for generic objects
+plm.generic.object.support.enabled=true 
+
+
+# Document Material Reference (DMRef) Container
+plm.smart.container.DMREF.name = Material Allocations
+plm.smart.container.DMREF.macro = generic_smartcontainer_macro.txt
+plm.smart.container.DMREF.params.0 = FM:Z_ZCC_FM_DMREF_GET_ASSIGNMNT
+#plm.smart.container.DMREF.icon = {0}/sap/folder_open
+plm.smart.container.DMREF.icon = {0}/sap/material_white<<{0}/sap/o_link
+
+# Allow drop on this object  
+plm.om.generic.business.object.DMREF.dnd.allowed=true
+
+plm.om.DOC.containers = @plm.om.DOC.containers@;SMART_CONT(DMREF)
+
+
+

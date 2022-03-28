@@ -1,0 +1,27 @@
+/*
+ ---------------------------------------------------------------------------------------------------------
+   S A P   E C T R   M A C R O   P R O G R A M
+ ---------------------------------------------------------------------------------------------------------
+ Purpose:      Macro to add Material Reference to DIS
+ Created by:   Schneider, Cenit AG
+ Created at:   13.01.2022
+ ---------------------------------------------------------------------------------------------------------
+ <DOC>
+      Material Seach to set DIS Reference
+ </DOC>
+ ---------------------------------------------------------------------------------------------------------
+*/
+
+// Call the Mask for Input
+p = GET_MASK_INPUT( "STANDARD_MAT", "mat.mask.title", "MAT")
+
+// define the search for Mat
+setId = SEARCH( "mat", p )
+
+keylist = KEYLIST_FROM_SET( setId )
+
+// write report to log
+REPORT(READ_DICTIONARY_TEXT( "plm.brobj.0107" ,"%1 objects found ...", "$count"))
+
+//WRITE_RESULTLIST(keylist,  "MACRO: Mat search via mask" )
+m = GET_MASK_INPUT("MAT", keylist)

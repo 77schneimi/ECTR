@@ -1,0 +1,8 @@
+# *****************************************************************************
+# Icon Definitions
+# *****************************************************************************
+
+# DMRef
+fnc.execute.macro(DMRef\:dmref_allocate.txt) = {0}/sap/material_white<<{0}/sap/o_link
+fnc.execute.macro(DMRef\:dmref_deallocate.txt) = {0}/sap/material_white<<{0}/sap/o_remove
+

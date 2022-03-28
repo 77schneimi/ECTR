@@ -1,0 +1,15 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<Generic_API_Calls>
+<!-- create DMRef -->	    
+    <function apiname="Z_ZCC_FM_DMREF_ASSIGN" background="false" name="DMREF_ASSIGN" refresh="true" return="ET_RETURN" transaction="bright" type="document" multiselection="false">
+        <import>
+            <parameter name="I_MATERIAL" string="12345"/>
+        </import>
+        <tables>
+            <table name="IT_CONTAINER_OBJECTS" foreach_object="true">
+                <parameter name="OBJKY" value="DOCUMENTNUMBER_INT"/>
+            </table>
+        </tables>
+    </function>
+
+</Generic_API_Calls>

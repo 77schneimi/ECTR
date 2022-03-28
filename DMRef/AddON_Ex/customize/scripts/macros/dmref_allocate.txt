@@ -1,0 +1,58 @@
+/*
+ ---------------------------------------------------------------------------------------------------------
+   S A P   E C T R   M A C R O   P R O G R A M
+ ---------------------------------------------------------------------------------------------------------
+ Purpose:      Backend RFC Z_ZCC_FM_DMREF_ASSIGN
+ Created by:   Cenit AG
+ Created at:   26. March 2022
+ --------------------------------------------------------------------------------------------------------- 
+ <DOC>
+	Add Meterial Reference to DIS
+ </DOC>
+ ---------------------------------------------------------------------------------------------------------
+*/
+
+// -------------------------------------------------------------------------------------------------------
+// Define functions
+function main()  {
+    // get the selected Document
+    list = KEYLIST_FROM_CONTEXT("active", "selected");
+    if (list.length == 0) { 
+		alert("Please, select Document");
+		return; 
+	}
+
+    // get user input  for Material
+    v_user_input = ASK_USER( "Material:", "Please insert the Material No" )
+
+    // st the parameters for function call
+	sID = CREATE_SET(list);
+	parameters = { i_matnr: v_user_input };
+
+	result = CALL_CONVERT_FM("FM:Z_ZCC_FM_DMREF_ASSIGN", sID, parameters );
+    resultlist = KEYLIST_FROM_SET(result); // without this line the code wont't be executed
+    
+	/*
+	alert(resultlist.length)
+	if (resultlist.length == 0) {
+	 REPORT( "no messages from call... missing success")
+	 alert("something went wrong") 
+	 return
+    }
+	
+	// Result output
+    for (var i=0; i<=resultlist.length; i++) {
+		REPORT( "messages from call...")
+		alert(resultlist[i])
+    }
+	*/
+}
+
+// ---------------------------------------------------------------------------------------------------------
+// Main
+
+  main()                                                        // execute the function "main"
+
+// ---------------------------------------------------------------------------------------------------------
+// End of macro
+// ---------------------------------------------------------------------------------------------------------

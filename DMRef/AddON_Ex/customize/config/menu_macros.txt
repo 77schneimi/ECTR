@@ -1,0 +1,12 @@
+# *****************************************************************************
+# DIS Meterial Reference
+# Macro Definitions
+# *****************************************************************************
+
+# Add Functions to Doc Objects
+
+? DMREF                 = fnc.execute.macro(DMRef\:dmref_allocate.txt)
+
+# Functions for DMRef Objects
+? DMREF_DEL             = fnc.execute.macro(DMRef\:dmref_deallocate.txt)
+

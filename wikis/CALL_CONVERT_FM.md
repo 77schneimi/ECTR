@@ -6,11 +6,11 @@ Call a Function Modul by a Macro.
 
 >Note: It is also possible to Call a Class-Method.
 
-### Documentation Syntay in offical ECTR Guide
+### Documentation Syntax in offical ECTR Guide
 
 In the official DSCSAG documentation there is a possibility to call a conversion function module by macro. Described as:
 
-```js
+```xml
     <setId> = CALL_CONVERT_FM( <fmName>, <setId>, <[parameters]> )
 ```
 
@@ -58,7 +58,6 @@ FUNCTION ZRFC_TEST
     IT_PARAMETERS TYPE /DSCSAG/SET_NAME_VALUE_T OPTIONAL
     IT_CONTAINER_OBJECTS TYPE /DSCSAG/OBJECT_T
     ET_CONTAINER_OBJECTS TYPE /DSCSAG/OBJECT_T.
-
 ```
 
 #### Class

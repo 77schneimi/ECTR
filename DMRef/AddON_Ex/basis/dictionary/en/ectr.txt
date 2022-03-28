@@ -1,0 +1,8 @@
+﻿# *****************************************************************************
+# # Dictionary for Language = EN
+# *****************************************************************************
+
+# APIs
+fnc.api.generic2(ECTR_NAV_PRO) = Test 
+fnc.execute.macro(DMRef\:dmref_allocate.txt) = allocate Material
+fnc.execute.macro(DMRef\:dmref_deallocate.txt) = remove Material

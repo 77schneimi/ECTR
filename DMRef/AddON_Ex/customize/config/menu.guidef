@@ -1,0 +1,17 @@
+﻿# *****************************************************************************
+# Menu Definitions
+# DIS Material Reference
+# *****************************************************************************
+
+# Rootcontainer
+plm.om.desktop.rootcontainers = @plm.om.desktop.rootcontainers@;DMREF
+
+# allocate DMRef
++  om.popup.menu.DOC                    = -----------------------------
+                                        = ? DMREF
+                                        = -----------------------------
+
+# delete DMRef from DIS
++  om.popup.menu.GEN_DMREF              = -----------------------------
+                                        = ? DMREF_DEL
+                                        = -----------------------------
